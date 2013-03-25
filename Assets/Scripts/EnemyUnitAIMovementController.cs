@@ -4,11 +4,15 @@ using System.Collections;
 public class EnemyUnitAIMovementController : MonoBehaviour {
 	
 	private CharacterMotor motor;
-	private Vector3 directionVector;
+	public Vector3 directionVector;
+	public GameObject target;
+	public string targetTag = "Finish";
+	public float speed = 1.0F;
 	
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
+		getNextTarget();
 	}
 	
 	// Update is called once per frame
@@ -34,10 +38,21 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 		}
 		
 		// Apply the direction to the CharacterMotor
-		motor.inputMoveDirection = transform.rotation * directionVector;
+		motor.inputMoveDirection =  transform.rotation * directionVector;
 	}
 	
 	Vector3 nextDirectionVector(){
-		return new Vector3(10,0,0);
+		
+		Vector3 targetDir = target.transform.position - transform.position;
+		targetDir = new Vector3(targetDir.x, 0, targetDir.z );
+        float step = speed * Time.deltaTime;
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
+        transform.rotation = Quaternion.LookRotation(newDir);
+		return transform.forward;
+	}
+	
+	GameObject getNextTarget(){
+		target=GameObject.FindWithTag(targetTag);
+		return target;
 	}
 }
