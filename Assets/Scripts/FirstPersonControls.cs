@@ -1,7 +1,9 @@
+//Brian Sherman
+
 using UnityEngine;
 using System.Collections;
 
-public class FirstPersonGUI : MonoBehaviour {
+public class FirstPersonControls : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
