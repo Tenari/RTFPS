@@ -32,13 +32,13 @@ public class EnemyUnitSpawn : MonoBehaviour {
 		counter++;
 		//for right now, spawns unit every 500 frames
 		if(counter == 500){
-			counter = 0;
+				counter = 0;
 			spawnUnit();			
-		}	
+			}	
 	}
 	
 	void spawnUnit(){
-		pos = transform.position;
+		pos = this.transform.position;
 		pos.x += 10;
 		pos.z += 10;
 		pos.y += 5;		
