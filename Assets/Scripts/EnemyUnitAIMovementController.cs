@@ -12,7 +12,7 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
-		getNextTarget();
+		//getNextTarget(targetTag);
 	}
 	
 	// Update is called once per frame
@@ -51,8 +51,8 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 		return transform.forward;
 	}
 	
-	GameObject getNextTarget(){
-		target=GameObject.FindWithTag(targetTag);
+	GameObject getNextTarget(string tag){
+		target=GameObject.FindWithTag(tag);
 		return target;
 	}
 }

@@ -40,10 +40,18 @@ public class EnemyUnitSpawn : MonoBehaviour {
 		pos = transform.position;
 		pos.x += 10;
 		pos.z += 10;
-		pos.y += 5;
-		
-		
-		Instantiate(eUnit, pos, transform.rotation);
-		
+		pos.y += 5;		
+		GameObject newUnit = (GameObject)Instantiate(eUnit, pos, transform.rotation);
+		switch(targetId){
+		case 1:
+			newUnit.SendMessage("getNextTarget", "House1");
+			break;
+		case 2:
+			newUnit.SendMessage("getNextTarget", "House2");
+			break;
+		case 3:
+			newUnit.SendMessage("getNextTarget", "House3");
+			break;
+		}
 	}
 }
