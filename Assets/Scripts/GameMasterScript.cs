@@ -7,6 +7,8 @@ public class GameMasterScript : MonoBehaviour {
 	float spawnDelay = 2.0f;
 	float nextSpawn = 0.0f;
 	GameObject[] enemySources;
+	public string enemyTag = "Enemy";
+	public string allyTag = "Ally";
 
 	// Use this for initialization
 	
@@ -75,8 +77,37 @@ public class GameMasterScript : MonoBehaviour {
 		//reset delay for spawns
 			nextSpawn = 0.0f;
 		}
+		
+		// Make the Ally units DealDamage
+		MakeTeamDealDamage(allyTag);
+		
+		// Make the enemies deal damage.
+		MakeTeamDealDamage(enemyTag);
 	}
 	
+	/// <summary>
+	/// Makes the (passed in) team try to do their attacks.
+	/// 
+	/// By Daniel Zapata.
+	/// </summary>
+	/// <param name='team'>
+	/// The Tag of the team that is going to attack.
+	/// </param>
+	void MakeTeamDealDamage(string team){
+		GameObject[] teamUnits = GameObject.FindGameObjectsWithTag(team);		// Get all the units on the team.
+		
+		if (team == allyTag){
+			foreach(GameObject obj in teamUnits){
+				obj.GetComponent<DealDamage>().AllyUnitAttack();				// Call the attack method.
+			}
+		}
+		// Same as above, but for enemies.
+		if (team == enemyTag){
+			foreach(GameObject obj in teamUnits){
+				obj.GetComponent<DealDamage>().EnemyUnitAttack();
+			}
+		}
+	}
 	
 	void startRound(int spawn1, int spawn2, int spawn3, bool round){	
 		spawn1Count = spawn1;
