@@ -1,3 +1,5 @@
+// Daniel Zapata
+
 using UnityEngine;
 using System.Collections;
 
@@ -53,5 +55,6 @@ public class Health : MonoBehaviour {
 	/// </summary>
 	void Died(){
 		dead = true;
+		Destroy(gameObject);
 	}
 }
