@@ -7,10 +7,12 @@ public class YourUnitScript : MonoBehaviour {
 	public Vector3 directionVector;
 	public GameObject target;
 	public float speed = 1.0F;
+	public int attackUnitsWithId;
+	
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
-		getNextTarget(); //finds closest enemy
+		getNextTarget(1); //finds closest enemy
 	}
 	
 	// Update is called once per frame
@@ -49,7 +51,9 @@ public class YourUnitScript : MonoBehaviour {
 		return transform.forward;
 	}
 	
-	GameObject getNextTarget(){
+	GameObject getNextTarget(int idAttack){
+		
+		attackUnitsWithId = idAttack;
 		
 		GameObject[] enemies;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy"); //all enemies
@@ -57,11 +61,12 @@ public class YourUnitScript : MonoBehaviour {
 		Vector3 position = transform.position;
 		foreach(GameObject obj in enemies){
 			Vector3 diff = obj.transform.position - position; //distance for enemy found
-			float currentDistance = diff.sqrMagnitude;			
+			float currentDistance = diff.sqrMagnitude;
 			if (currentDistance < objDistance){//if this is the closest enemy
 				target = obj; //this is the "target" for your unit to travel to
 				objDistance = currentDistance;
 			}
+			
 		}
 		
 		return target;

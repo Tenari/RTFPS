@@ -8,6 +8,7 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 	public GameObject target;
 	public string targetTag = "Finish";
 	public float speed = 1.0F;
+	public int attackId =0;
 	
 	// Use this for initialization
 	void Start () {
@@ -53,6 +54,18 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 	
 	GameObject getNextTarget(string tag){
 		target=GameObject.FindWithTag(tag);
+		if(tag == "House1"){
+			attackId = 1;
+		}
+		else if(tag == "House2"){
+			attackId = 2;
+		}
+		else if(tag == "House3"){
+			attackId = 3;
+		}
+		else{
+			attackId = 4; //for attacking the finish/tower
+		}
 		return target;
 	}
 }
