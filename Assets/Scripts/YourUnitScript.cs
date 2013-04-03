@@ -10,7 +10,7 @@ public class YourUnitScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
-		getNextTarget();
+		getNextTarget(); //finds closest enemy
 	}
 	
 	// Update is called once per frame
@@ -50,16 +50,16 @@ public class YourUnitScript : MonoBehaviour {
 	}
 	
 	GameObject getNextTarget(){
-		//target=GameObject.FindWithTag(targetTag);
+		
 		GameObject[] enemies;
-		enemies = GameObject.FindGameObjectsWithTag("Enemy");
+		enemies = GameObject.FindGameObjectsWithTag("Enemy"); //all enemies
 		float objDistance = Mathf.Infinity;
 		Vector3 position = transform.position;
 		foreach(GameObject obj in enemies){
-			Vector3 diff = obj.transform.position - position;
-			float currentDistance = diff.sqrMagnitude;
-			if (currentDistance < objDistance){
-				target = obj;
+			Vector3 diff = obj.transform.position - position; //distance for enemy found
+			float currentDistance = diff.sqrMagnitude;			
+			if (currentDistance < objDistance){//if this is the closest enemy
+				target = obj; //this is the "target" for your unit to travel to
 				objDistance = currentDistance;
 			}
 		}
