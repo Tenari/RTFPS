@@ -1,3 +1,5 @@
+//Grader: code done by Nik Bauer, njb26
+
 using UnityEngine;
 using System.Collections;
 
@@ -7,12 +9,24 @@ public class YourUnitScript : MonoBehaviour {
 	public Vector3 directionVector;
 	public GameObject target;
 	public float speed = 1.0F;
-	public int attackUnitsWithId;
+	public int attackUnitsWithId; //1, 2, 3 depending on which spawn point it is made forom
 	
 	// Use this for initialization
 	void Start () {
 		motor = GetComponent<CharacterMotor>();
+		//following only exists for testing: travels to closest enemy with attackId 1
+		//so once its there it can start dealing damage!
+		//remember, once it is destoryed, call getNextTarget(int id)
+		//where id matches the row it is in
+		
+		//can call getNextTarget(attackUnitsWithId) once the code works
 		getNextTarget(1); //finds closest enemy
+	}
+	
+	//added in. when it is spawned you can SendMessage (assignAttackid, id)
+	//after enemy is defeated you can then just do getnextTarget(attackUnitsWithId)
+	void assignAttackId(int id){
+		attackUnitsWithId = id;
 	}
 	
 	// Update is called once per frame
@@ -53,16 +67,20 @@ public class YourUnitScript : MonoBehaviour {
 	
 	GameObject getNextTarget(int idAttack){
 		
-		attackUnitsWithId = idAttack;
+		attackUnitsWithId = idAttack;//will only change from null if this is the first time it is called
 		
 		GameObject[] enemies;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy"); //all enemies
 		
 		float objDistance = Mathf.Infinity;
 		Vector3 position = transform.position;
+		
 		foreach(GameObject obj in enemies){
+			//verify it is an Enemy Unit
 			if(obj.GetComponent<EnemyUnitAIMovementController>()){
+				//only attack it if it is in the matching row
 				if (attackUnitsWithId == obj.GetComponent<EnemyUnitAIMovementController>().attackId){
+					//get closest one in matching row
 					Vector3 diff = obj.transform.position - position; //distance for enemy found
 					float currentDistance = diff.sqrMagnitude;
 					if (currentDistance < objDistance){//if this is the closest enemy
