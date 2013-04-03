@@ -22,10 +22,12 @@ public class DealDamage : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		target = gameObject.GetComponent<YourUnitScript>().target;
-		if(target != null){
+		YourUnitScript temp = gameObject.GetComponent<YourUnitScript>();	// Attempt to get the component containing the target pointer
+		
+		if(temp != null){
+			target = temp.target;
 			if(IsClose(target.transform.position)){
-				
+				target.GetComponent<Health>().TakeDamage(damage);
 			}
 		}
 	}

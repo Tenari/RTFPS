@@ -36,7 +36,7 @@ public class Health : MonoBehaviour {
 	/// <param name='dmgAmount'>
 	/// Dmg amount.
 	/// </param>
-	void TakeDamage(int dmgAmount){
+	public void TakeDamage(int dmgAmount){
 		health -= dmgAmount;
 	}
 	
@@ -55,6 +55,7 @@ public class Health : MonoBehaviour {
 	/// </summary>
 	void Died(){
 		dead = true;
+		//SendMessage() to game master that you are dead so it can update Targets of other Units.
 		Destroy(gameObject);
 	}
 }
