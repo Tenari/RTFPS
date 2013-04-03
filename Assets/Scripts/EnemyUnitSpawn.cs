@@ -6,6 +6,9 @@ public class EnemyUnitSpawn : MonoBehaviour {
 	public int targetId;
 	public GameObject target;
 	private int counter = 0;
+	public GameObject eUnit;
+	private Vector3 pos;
+	
 	
 	// Use this for initialization
 	void Start () {
@@ -18,7 +21,7 @@ public class EnemyUnitSpawn : MonoBehaviour {
 			target = GameObject.FindGameObjectWithTag("House2");
 			break;
 		case 3:
-			target = GameObject.FindGameObjectsWithTag("House3");
+			target = GameObject.FindGameObjectWithTag("House3");
 			break;
 		}
 	}
@@ -34,6 +37,13 @@ public class EnemyUnitSpawn : MonoBehaviour {
 	}
 	
 	void spawnUnit(){
+		pos = transform.position;
+		pos.x += 10;
+		pos.z += 10;
+		pos.y += 5;
+		
+		
+		Instantiate(eUnit, pos, transform.rotation);
 		
 	}
 }
