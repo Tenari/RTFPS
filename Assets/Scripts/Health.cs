@@ -55,7 +55,7 @@ public class Health : MonoBehaviour {
 	/// </summary>
 	void Died(){
 		dead = true;
-		//SendMessage() to game master that you are dead so it can update Targets of other Units.
+		GameObject.FindGameObjectWithTag("GameController").SendMessage("Died", gameObject); 					// to game master that you are dead so it can update Targets of other Units.
 		Destroy(gameObject);
 	}
 }

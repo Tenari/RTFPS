@@ -108,6 +108,29 @@ public class GameMasterScript : MonoBehaviour {
 			}
 		}
 	}
+	/// <summary>
+	/// The specified GameObject 'obj' died, and now things need to be resolved.
+	/// This method doe the resolving.
+	/// 
+	/// By Daniel Zapata
+	/// </summary>
+	/// <param name='obj'>
+	/// The newly dead GameObject.
+	/// </param>
+	void Died(GameObject obj){
+		
+		// If the dead thing was an enemy unit
+		if (obj.tag == enemyTag){
+			GameObject[] allyTeamUnits = GameObject.FindGameObjectsWithTag(allyTag);// Get all the units on the ally team.
+			
+			foreach (GameObject guy in allyTeamUnits){
+				YourUnitScript temp = guy.GetComponent<YourUnitScript>();	// Get the YourUnitScript component of this team member.
+				temp.getNextTarget((int)Random.Range(1,3));					// Find a new target in a random lane.
+			}
+		}
+		
+		
+	}
 	
 	void startRound(int spawn1, int spawn2, int spawn3, bool round){	
 		spawn1Count = spawn1;

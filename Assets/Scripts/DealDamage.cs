@@ -12,6 +12,10 @@ public class DealDamage : MonoBehaviour {
 	
 	private GameObject target;
 	
+	public string house1Tag = "House1";
+	public string house2Tag = "House2";
+	public string house3Tag = "House3";
+	
 	// Use this for initialization
 	void Start () {
 		
@@ -56,6 +60,12 @@ public class DealDamage : MonoBehaviour {
 	
 	// Determines if the 
 	bool IsCloseEnough(Vector3 pos){
+		if((target.tag == house1Tag) || (target.tag == house2Tag) || (target.tag == house3Tag)){
+			if(Vector3.Distance(pos, gameObject.transform.position) <= 30)
+				return true;
+			else
+				return false;
+		}
 		if(Vector3.Distance(pos, gameObject.transform.position) <= minDistance)
 			return true;
 		else

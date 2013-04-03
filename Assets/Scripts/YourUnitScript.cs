@@ -65,7 +65,7 @@ public class YourUnitScript : MonoBehaviour {
 		return transform.forward;
 	}
 	
-	GameObject getNextTarget(int idAttack){
+	public GameObject getNextTarget(int idAttack){
 		
 		attackUnitsWithId = idAttack;//will only change from null if this is the first time it is called
 		

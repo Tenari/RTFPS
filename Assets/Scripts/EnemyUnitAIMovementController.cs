@@ -44,6 +44,7 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 		motor.inputMoveDirection =  transform.rotation * directionVector;
 	}
 	
+	// Calculates the direction towards the target
 	Vector3 nextDirectionVector(){
 		
 		Vector3 targetDir = target.transform.position - transform.position;
@@ -54,7 +55,7 @@ public class EnemyUnitAIMovementController : MonoBehaviour {
 		return transform.forward;
 	}
 	
-	GameObject getNextTarget(string tag){
+	public GameObject getNextTarget(string tag){
 		target=GameObject.FindWithTag(tag);
 		if(tag == "House1"){
 			attackId = 1;
