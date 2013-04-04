@@ -53,6 +53,16 @@ public class DealDamage : MonoBehaviour {
 		}
 	}
 	
+	// Called when the player is clicking on an enemy unit.
+	public void PlayerAttack(GameObject opponent){
+		target = opponent;
+		// If the player is close enough to the unit.
+		if (IsCloseEnough(opponent.transform.position)){
+			// Deal the damage.
+			opponent.GetComponent<Health>().TakeDamage(damage);
+		}
+	}
+	
 	// Use this to randomly assign the damage dealt by this unit.
 	void RollDamage(){
 		damage = (int)Random.Range(0.0F,75.0F);

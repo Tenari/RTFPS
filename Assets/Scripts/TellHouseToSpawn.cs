@@ -12,6 +12,9 @@ public class TellHouseToSpawn : MonoBehaviour {
 	public string house2Tag = "House2";
 	public string house3Tag = "House3";
 	
+	// Enemy Tag
+	public string enemyTag = "Enemy";
+	
 	// Crosshair stuff
 	public Texture2D crosshairTexture;
 	Rect crosshairPosition;
@@ -38,6 +41,10 @@ public class TellHouseToSpawn : MonoBehaviour {
 					
 					// Spawn a new unit.
 					hit.collider.GetComponent<SpawnAllyUnit>().SendMessage("SpawnNewUnit");
+				}
+				// If we hit an enemy,
+				else if(hit.collider.CompareTag(enemyTag)){
+					GetComponent<DealDamage>().SendMessage("PlayerAttack", hit.collider.gameObject);
 				}
 			}
 		}	
