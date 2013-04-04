@@ -5,7 +5,7 @@ using System.Collections;
 
 public class GameMasterScript : MonoBehaviour {
 	public int spawn1Count, spawn2Count, spawn3Count = 0;
-	public bool round1, round2 = true;
+	public int roundVal = 1;
 	float spawnDelay = 2.0f;
 	float nextSpawn = 0.0f;
 	GameObject[] enemySources;
@@ -22,11 +22,11 @@ public class GameMasterScript : MonoBehaviour {
 		 * Spawn 2: 3 Units
 		 * Spawn 3: 5 Units
 		 */
-			if(!round1){
-				startRound(5, 3, 5, round1);
+			if(roundVal == 1){
+				startRound(5, 3, 5);
 			}
-			else if (!round2){
-				startRound(2, 10, 5, round2);
+			else if (roundVal== 2){
+				startRound(2, 10, 5);
 			}
 			/**** ROUND 2 **********
 		 * Spawn 1: 2 Units
@@ -76,7 +76,8 @@ public class GameMasterScript : MonoBehaviour {
 		//can modify this, make it an array that says if all round before are false, call next
 		//but only 2 rounds for now
 		if(spawn1Count == 0 && spawn2Count == 0 && spawn3Count == 0){
-			Start(); //will call Start, with round1== false, so round 2 will begin
+				roundVal = 2;
+			Start(); //will call Start, with roundVal == 2, round 2 will begin
 		}
 		
 		//reset delay for spawns
@@ -143,11 +144,10 @@ public class GameMasterScript : MonoBehaviour {
 	}
 	
 	//done by njb26
-	void startRound(int spawn1, int spawn2, int spawn3, bool round){	
+	void startRound(int spawn1, int spawn2, int spawn3){	
 		spawn1Count = spawn1;
 		spawn2Count = spawn2;
 		spawn3Count = spawn3;
-		round = false;
 	}
 	
 }
