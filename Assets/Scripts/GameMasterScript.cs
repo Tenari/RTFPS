@@ -6,6 +6,7 @@ using System.Collections;
 public class GameMasterScript : MonoBehaviour {
 	public int spawn1Count, spawn2Count, spawn3Count = 0;
 	public int roundVal = 1;
+	public bool gameStarted = false;
 	float spawnDelay = 2.0f;
 	float nextSpawn = 0.0f;
 	GameObject[] enemySources;
@@ -45,6 +46,7 @@ public class GameMasterScript : MonoBehaviour {
 		nextSpawn += Time.deltaTime;
 		//if 2 seconds have passed
 		if(nextSpawn >= spawnDelay){
+			gameStarted = true;
 			foreach(GameObject obj in enemySources){
 				//verify it is an EnemySource
 				if(obj.GetComponent<EnemyUnitSpawn>()){
@@ -72,13 +74,14 @@ public class GameMasterScript : MonoBehaviour {
 				}
 				
 				}
+			
 			}
 		//can modify this, make it an array that says if all round before are false, call next
 		//but only 2 rounds for now
-		/*if(spawn1Count == 0 && spawn2Count == 0 && spawn3Count == 0){
+		if(spawn1Count == 0 && spawn2Count == 0 && spawn3Count == 0 && allEnemies.Length ==0){
 				roundVal = 2;
 			Start(); //will call Start, with roundVal == 2, round 2 will begin
-		}*/
+		}
 		
 		//reset delay for spawns
 			nextSpawn = 0.0f;
@@ -90,11 +93,7 @@ public class GameMasterScript : MonoBehaviour {
 		// Make the enemies deal damage.
 		MakeTeamDealDamage(enemyTag);
 		
-		//checks if all enemies are defeated, starts round 2
-		if(allEnemies.Length == 0){
-			roundVal = 2;
-			Start();
-		}
+		
 	}
 	
 	/// <summary>
