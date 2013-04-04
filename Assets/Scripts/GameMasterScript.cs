@@ -18,12 +18,12 @@ public class GameMasterScript : MonoBehaviour {
 		void Start () {
 		enemySources = GameObject.FindGameObjectsWithTag("EnemySpawn");
 		/**** ROUND 1 **********
-		 * Spawn 1: 5 Units
+		 * Spawn 1: 3 Units
 		 * Spawn 2: 3 Units
-		 * Spawn 3: 5 Units
+		 * Spawn 3: 3 Units
 		 */
 			if(roundVal == 1){
-				startRound(5, 3, 5);
+				startRound(3, 3, 3);
 			}
 			else if (roundVal== 2){
 				startRound(2, 10, 5);

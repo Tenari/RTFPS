@@ -22,7 +22,17 @@ public class YourUnitScript : MonoBehaviour {
 		//where id matches the row it is in
 		
 		//can call getNextTarget(attackUnitsWithId) once the code works
-		getNextTarget(1); //finds closest enemy
+		int rand = (int)Random.Range(0,4);
+		if (rand <=1){
+			getNextTarget(1); //finds closest enemy
+		}
+		else if (rand == 2){
+			getNextTarget(3); //finds closest enemy
+		}
+		else if (rand >=3){
+			getNextTarget(2); //finds closest enemy
+		}
+		
 	}
 	
 	//added in. when it is spawned you can SendMessage (assignAttackid, id)
