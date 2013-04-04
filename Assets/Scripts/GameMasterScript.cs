@@ -1,12 +1,15 @@
+//First half of this by Nik Bauer, njb26
+
 using UnityEngine;
 using System.Collections;
 
 public class GameMasterScript : MonoBehaviour {
-	public int spawn1Count, spawn2Count, spawn3Count;
+	public int spawn1Count, spawn2Count, spawn3Count = 0;
 	public bool round1, round2 = true;
 	float spawnDelay = 2.0f;
 	float nextSpawn = 0.0f;
 	GameObject[] enemySources;
+	GameObject[] allEnemies;
 	public string enemyTag = "Enemy";
 	public string allyTag = "Ally";
 
@@ -19,17 +22,18 @@ public class GameMasterScript : MonoBehaviour {
 		 * Spawn 2: 3 Units
 		 * Spawn 3: 5 Units
 		 */
-			if(round1){
+			if(!round1){
 				startRound(5, 3, 5, round1);
+			}
+			else if (!round2){
+				startRound(2, 10, 5, round2);
 			}
 			/**** ROUND 2 **********
 		 * Spawn 1: 2 Units
 		 * Spawn 2: 10 Units
 		 * Spawn 3: 5 Units
 		 */	
-			else if(round2){
-				startRound(2, 10, 5, round2);
-			}
+			
 		}	
 	
 	
@@ -37,6 +41,7 @@ public class GameMasterScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		allEnemies = GameObject.FindGameObjectsWithTag("Enemy");
 		nextSpawn += Time.deltaTime;
 		//if 2 seconds have passed
 		if(nextSpawn >= spawnDelay){
@@ -46,14 +51,14 @@ public class GameMasterScript : MonoBehaviour {
 					//if first enemySource			
 					if (obj.GetComponent<EnemyUnitSpawn>().targetId == 1){
 						if(spawn1Count > 0){
-						//	obj.GetComponent<EnemyUnitSpawn>().spawnUnit();
+							obj.GetComponent<EnemyUnitSpawn>().spawnUnit();
 							spawn1Count--;
 						}
 					}
 				//if second enemySource
 				else if(obj.GetComponent<EnemyUnitSpawn>().targetId == 2){
 					if(spawn2Count > 0){
-						//	obj.GetComponent<EnemyUnitSpawn>().spawnUnit();
+							obj.GetComponent<EnemyUnitSpawn>().spawnUnit();
 							spawn2Count--;
 						}
 				
@@ -61,7 +66,7 @@ public class GameMasterScript : MonoBehaviour {
 				//if third enemySource
 				else if(obj.GetComponent<EnemyUnitSpawn>().targetId == 3){
 					if(spawn3Count > 0){
-						//	obj.GetComponent<EnemyUnitSpawn>().spawnUnit();
+							obj.GetComponent<EnemyUnitSpawn>().spawnUnit();
 							spawn3Count--;
 						}
 				}
@@ -83,6 +88,11 @@ public class GameMasterScript : MonoBehaviour {
 		
 		// Make the enemies deal damage.
 		MakeTeamDealDamage(enemyTag);
+		
+		//checks if all enemies are defeated
+		//if(allEnemies.Length == 0){
+		//	Start ();
+		//}
 	}
 	
 	/// <summary>
@@ -132,6 +142,7 @@ public class GameMasterScript : MonoBehaviour {
 		
 	}
 	
+	//done by njb26
 	void startRound(int spawn1, int spawn2, int spawn3, bool round){	
 		spawn1Count = spawn1;
 		spawn2Count = spawn2;

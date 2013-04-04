@@ -6,13 +6,17 @@ public class EnemyUnitSpawn : MonoBehaviour {
 	
 	public int targetId;
 	public GameObject target;
-	private int counter = 0;
+	//private int counter = 0;
 	public GameObject eUnit;
 	private Vector3 pos;
 	
 	
 	// Use this for initialization
 	void Start () {
+		pos = gameObject.transform.position;
+		pos.x += 10;
+		pos.z += 10;
+		pos.y += 5;	
 		//when spawned, will tell units to attack house that it is given, based on spawn
 		switch(targetId){
 		case 1:
@@ -29,19 +33,16 @@ public class EnemyUnitSpawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		counter++;
+		//counter++;
 		//for right now, spawns unit every 500 frames
-		if(counter == 500){
-				counter = 0;
-			spawnUnit();			
-			}	
+		//if(counter == 500){
+		//		counter = 0;
+		//	spawnUnit();			
+		//	}	
 	}
 	
-	void spawnUnit(){
-		pos = this.transform.position;
-		pos.x += 10;
-		pos.z += 10;
-		pos.y += 5;		
+	public void spawnUnit(){
+			
 		GameObject newUnit = (GameObject)Instantiate(eUnit, pos, transform.rotation);
 		switch(targetId){
 		case 1:
