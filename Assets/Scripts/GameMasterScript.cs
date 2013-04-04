@@ -75,10 +75,10 @@ public class GameMasterScript : MonoBehaviour {
 			}
 		//can modify this, make it an array that says if all round before are false, call next
 		//but only 2 rounds for now
-		if(spawn1Count == 0 && spawn2Count == 0 && spawn3Count == 0){
+		/*if(spawn1Count == 0 && spawn2Count == 0 && spawn3Count == 0){
 				roundVal = 2;
 			Start(); //will call Start, with roundVal == 2, round 2 will begin
-		}
+		}*/
 		
 		//reset delay for spawns
 			nextSpawn = 0.0f;
@@ -90,10 +90,11 @@ public class GameMasterScript : MonoBehaviour {
 		// Make the enemies deal damage.
 		MakeTeamDealDamage(enemyTag);
 		
-		//checks if all enemies are defeated
-		//if(allEnemies.Length == 0){
-		//	Start ();
-		//}
+		//checks if all enemies are defeated, starts round 2
+		if(allEnemies.Length == 0){
+			roundVal = 2;
+			Start();
+		}
 	}
 	
 	/// <summary>
