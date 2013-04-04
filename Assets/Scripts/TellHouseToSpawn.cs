@@ -15,10 +15,6 @@ public class TellHouseToSpawn : MonoBehaviour {
 	// Enemy Tag
 	public string enemyTag = "Enemy";
 	
-	// Crosshair stuff
-	public Texture2D crosshairTexture;
-	Rect crosshairPosition;
-	
 	// Use this for initializing the crosshairPosition to the center of the screen.
 	void Start () {
 	}
@@ -26,9 +22,6 @@ public class TellHouseToSpawn : MonoBehaviour {
 	// Update is called once per frame
 	// In this implementation, it tries to send a spawnunit message to houses in front of it.
 	void Update () {
-		crosshairPosition = new Rect(((Screen.width - crosshairTexture.width)/2),((Screen.height - crosshairTexture.height)/2), crosshairTexture.width, crosshairTexture.height);
-		
-
 		// If the left click is down,
 		if(Input.GetMouseButtonDown(0)){
 			
@@ -49,11 +42,4 @@ public class TellHouseToSpawn : MonoBehaviour {
 			}
 		}	
 	}
-	
-	// Draws the crosshair.
-	void OnGUI(){
-		GUI.DrawTexture(crosshairPosition, crosshairTexture, ScaleMode.ScaleToFit, true, 0.0f);
-	}
-	
-	
 }
