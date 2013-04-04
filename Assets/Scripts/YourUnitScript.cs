@@ -58,11 +58,11 @@ public class YourUnitScript : MonoBehaviour {
 		
 		//every 2 seconds check for a new "closest bad guy"
 		//simple way to also make it attack next bad guy if has defeated the old one
-		timeSinceLastCheck += Time.deltaTime;
+		/*timeSinceLastCheck += Time.deltaTime;
 		if(timeSinceLastCheck >= checkTime){
 			getNextTarget(attackUnitsWithId);
 			timeSinceLastCheck = 0;
-		}
+		}*/
 	}
 	
 	Vector3 nextDirectionVector(){

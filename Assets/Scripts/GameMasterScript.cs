@@ -45,7 +45,6 @@ public class GameMasterScript : MonoBehaviour {
 		nextSpawn += Time.deltaTime;
 		//if 2 seconds have passed
 		if(nextSpawn >= spawnDelay){
-			gameStarted = true;
 			foreach(GameObject obj in enemySources){
 				//verify it is an EnemySource
 				if(obj.GetComponent<EnemyUnitSpawn>()){

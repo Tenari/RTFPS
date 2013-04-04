@@ -33,12 +33,7 @@ public class EnemyUnitSpawn : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//counter++;
-		//for right now, spawns unit every 500 frames
-		//if(counter == 500){
-		//		counter = 0;
-		//	spawnUnit();			
-		//	}	
+		
 	}
 	
 	public void spawnUnit(){

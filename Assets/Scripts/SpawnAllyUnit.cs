@@ -7,7 +7,7 @@ public class SpawnAllyUnit : MonoBehaviour {
 	public string allyUnitPrefabName = "YourUnit";// Prefab name.
 	public Vector3 pos;					// The position of the spawn.
 	public float houseSize = 20.0F;		// The size of the houses.
-	
+	public int houseNum;
 	public int numUnitsLeft = 4;		// Limits the number of units able to be generated.
 	// Use this for initialization
 	void Start () {
@@ -31,6 +31,11 @@ public class SpawnAllyUnit : MonoBehaviour {
 			numUnitsLeft--;			// Subtract one, and send him out.
 			// Instantiate a copy of the unit at the initially determined position, with this rotation.
 			Instantiate(Resources.Load(allyUnitPrefabName,typeof(GameObject)), pos, transform.rotation);
+		/*Use this to spawn a unti and then give it the id of units to attack
+		 * GameObject newunit = (GameObject)Instantiate(Resources.Load(allyUnitPrefabName,typeof(GameObject)), pos, transform.rotation);
+		   newunit.sendMessage("getNextTarget", houseNum);
+		   and remove the line getNextTarget(1) from YourUnitScript, in start(), it tells units to attack only enemy units with id 1
+		*/
 		}
 	}
 }
