@@ -6,7 +6,6 @@ using System.Collections;
 public class GameMasterScript : MonoBehaviour {
 	public int spawn1Count, spawn2Count, spawn3Count = 0;
 	public int roundVal = 1;
-	public bool gameStarted = false;
 	float spawnDelay = 2.0f;
 	float nextSpawn = 0.0f;
 	GameObject[] enemySources;

@@ -9,6 +9,8 @@ public class YourUnitScript : MonoBehaviour {
 	public Vector3 directionVector;
 	public GameObject target;
 	public float speed = 1.0F;
+	float checkTime = 2.0f;
+	float timeSinceLastCheck = 0.0f;
 	public int attackUnitsWithId; //1, 2, 3 depending on which spawn point it is made forom
 	
 	// Use this for initialization
@@ -53,6 +55,14 @@ public class YourUnitScript : MonoBehaviour {
 		
 		// Apply the direction to the CharacterMotor
 		motor.inputMoveDirection =  transform.rotation * directionVector;
+		
+		//every 2 seconds check for a new "closest bad guy"
+		//simple way to also make it attack next bad guy if has defeated the old one
+		timeSinceLastCheck += Time.deltaTime;
+		if(timeSinceLastCheck >= checkTime){
+			getNextTarget(attackUnitsWithId);
+			timeSinceLastCheck = 0;
+		}
 	}
 	
 	Vector3 nextDirectionVector(){
